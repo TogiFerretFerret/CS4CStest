@@ -13,10 +13,12 @@ def calculadora(a,b,c):
             print("erm actually dividing by zero is not possible so sybau")
     else: 
         print("erm you didnt write anything possible for an operation. enter either + - * /")
-
-a = int(input("enter the first number "))
-b = input("Enter the operation ")
-c = int(input("Enter thse second number "))
+try:
+    a = int(input("enter the first number "))
+    b = input("Enter the operation ").strip()
+    c = int(input("Enter thse second number "))
+except ValueError:
+    print("Something went wrong")
 calculadora(a, b, c)
 
 print("bruh")
