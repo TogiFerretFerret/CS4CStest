@@ -1,23 +1,39 @@
-def calculadora(a,b,c):
-    if b == "+":
-        print(a+c)
-    elif b == "-":
-        print(a-c)
-    elif b == "*":
-        print(a*c)
-    elif b == "/":
-        print(a/c)
-        if c != 0:
-            print(a/c)
-        else:
-            print("erm actually dividing by zero is not possible so sybau")
-    else: 
-        print("erm you didnt write anything possible for an operation. enter either + - * /")
+# High-powered native python calculator
 
-a = int(input("enter the first number "))
-b = input("Enter the operation ")
-c = int(input("Enter thse second number "))
-calculadora(a, b, c)
+def main():
+    """
+    Main function to run the calculator.
+    """
+    print("Welcome to the MeowingSim Calculator!")
+    print("Enter 'quit' to exit.")
 
-print("bruh")
-print("does this work")
+    while True:
+        try:
+            expression = input(">>> ")
+            if expression.lower() == 'quit':
+                break
+            result = evaluate(expression)
+            print(result)
+        except (EOFError, KeyboardInterrupt):
+            print("\nExiting...")
+            break
+
+
+import decimal
+
+def evaluate(expression):
+    """
+    Evaluates the given mathematical expression.
+    """
+    try:
+        # Set precision for decimal calculations
+        decimal.getcontext().prec = 50
+        # Evaluate the expression using decimal objects
+        result = eval(expression, {"__builtins__": None}, {"Decimal": decimal.Decimal})
+        return result
+    except Exception as e:
+        return f"Error: {e}"
+
+
+if __name__ == "__main__":
+    main()
